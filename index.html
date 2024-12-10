@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Customizable Map</title>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDLxbDczFGMsv1KoAi2O7nVCqgqv4iKKnY"></script>
+    <style>
+        #map {
+            width: 100%;
+            height: 500px;
+        }
+    </style>
+</head>
+<body>
+    <div id="map"></div>
+    <script>
+        // Replace this with your Snazzy Maps style JSON
+        const snazzyStyle = [
+            {
+                "featureType": "water",
+                "elementType": "geometry",
+                "stylers": [
+                    { "color": "#e9e9e9" },
+                    { "lightness": 17 }
+                ]
+            }
+            // Add more style rules as needed
+        ];
+
+        const map = new google.maps.Map(document.getElementById('map'), {
+            center: { lat: 37.7749, lng: -122.4194 }, // Example coordinates
+            zoom: 12,
+            styles: snazzyStyle
+        });
+
+        // Define the heart shape using coordinates
+        const heartCoordinates = [
+            { lat: 37.782, lng: -122.434 },
+            { lat: 37.785, lng: -122.432 },
+            { lat: 37.788, lng: -122.434 },
+            { lat: 37.785, lng: -122.437 },
+            { lat: 37.782, lng: -122.434 }
+        ];
+
+        const heartShape = new google.maps.Polygon({
+            paths: heartCoordinates,
+            strokeColor: "#FF0000",
+            strokeOpacity: 0.8,
+            strokeWeight: 2,
+            fillColor: "#FF0000",
+            fillOpacity: 0.35
+        });
+
+        heartShape.setMap(map);
+    </script>
+</body>
+</html>
